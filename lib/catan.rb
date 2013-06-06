@@ -1,5 +1,11 @@
 require "catan/version"
 
+require 'enrar'
+
 module Catan
-  # Your code goes here...
+  def self.initialize!
+    Enrar.initialize!
+  end
 end
+
+require 'catan/hex'
