@@ -10,4 +10,6 @@ end
 
 require 'catan/hex'
 require 'catan/hex_point'
+require 'catan/hex_grid'
+
 require 'catan/user'
