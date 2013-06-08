@@ -9,4 +9,5 @@ module Catan
 end
 
 require 'catan/hex'
+require 'catan/hex_point'
 require 'catan/user'
