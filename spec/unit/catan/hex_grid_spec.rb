@@ -22,4 +22,10 @@ describe Catan::HexGrid do
     board = Catan::HexGrid.new(2)
     board[Catan::HexPoint.new(0, 0)].must_be_kind_of Catan::Hex
   end
+
+  it 'throws an out of bounds exception when you try to go beyond the grid' do
+    board = Catan::HexGrid.new(2)
+    new_point = Catan::HexPoint.new(2, -2).travel(:northeast)
+    lambda {board[new_point]}.must_raise(Catan::OutOfGridException)
+  end
 end

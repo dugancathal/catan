@@ -18,7 +18,14 @@ module Catan
     end
 
     def [](point)
-      @grid[point]
+      if @grid.has_key? point
+        @grid[point]
+      else
+        raise Catan::OutOfGridException
+      end
     end
+  end
+
+  class OutOfGridException < RuntimeError
   end
 end
