@@ -5,8 +5,12 @@ module Catan
       @name = name
     end
 
-    def place_road(hex, side)
-      hex[side] = self
+    def place_road(hex, direction)
+      hex[:roads, direction] = self
+    end
+
+    def place_metropolis(hex, direction)
+      hex[:metropoles, direction] = self
     end
   end
 end
