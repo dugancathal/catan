@@ -16,3 +16,5 @@ require 'catan/user'
 
 require 'catan/card'
 require 'catan/deck'
+
+require 'catan/road'
