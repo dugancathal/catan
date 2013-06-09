@@ -3,34 +3,33 @@ module Catan
     attr_reader :roads
     attr_reader :metropoles
     ROAD_NAMES = %w(north northeast southeast south southwest northwest)
+    OPPOSITE_DIRECTIONS = {
+      north: :south,
+      south: :north,
+      northwest: :southeast,
+      northeast: :southwest,
+      southwest: :northeast,
+      southeast: :northwest,
+      east: :west,
+      west: :east,
+    }
+
     DIRECTIONS_TO_ROADS = {
-      :n => 0,
       :north => 0,
-      :ne => 1,
       :northeast => 1,
-      :se => 2,
       :southeast => 2,
-      :s => 3,
       :south => 3,
-      :sw => 4,
       :southwest => 4,
-      :nw => 5,
       :northwest => 5,
     }
 
     METROPOLIS_NAMES = %w(northeast east southeast southwest west northwest)
     DIRECTIONS_TO_METROPOLES = {
-      :ne => 0,
       :northeast => 0,
-      :e => 1,
       :east => 1,
-      :se => 2,
       :southeast => 2,
-      :sw => 3,
       :southwest => 3,
-      :w => 4,
       :west => 4,
-      :nw => 5,
       :northwest => 5,
     }
 
