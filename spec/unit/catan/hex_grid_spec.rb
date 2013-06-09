@@ -28,4 +28,13 @@ describe Catan::HexGrid do
     new_point = Catan::HexPoint.new(2, -2).travel(:northeast)
     lambda {board[new_point]}.must_raise(Catan::OutOfGridException)
   end
+
+  it 'sets the road for both adjacent hexes' do
+    board = Catan::HexGrid.new(2)
+    hexpoint = Catan::HexPoint.new(1, -1)
+    user = Catan::User.new 'test'
+    user.place_road(board, hexpoint, :northeast)
+    board[hexpoint][:roads, :northeast].must_be_kind_of Catan::Road
+    board[hexpoint.travel(:northeast)][:roads, :southwest].must_be_kind_of Catan::Road
+  end
 end

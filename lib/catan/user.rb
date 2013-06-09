@@ -7,18 +7,32 @@ module Catan
       @hand = []
     end
 
-    def place_road(hex, direction)
-      hex[:roads, direction] = self
+    def place_road(board, hexpoint, direction)
+      if @inventory[:roads] > 0
+        board[hexpoint][:roads, direction] = Catan::Road.new self
+        place_opposing_road(board, hexpoint, direction)
+      else
+        raise "You've already used all the roads, #{@name}"
+      end
     end
 
-    def place_metropolis(hex, direction)
-      hex[:metropoles, direction] = self
+    def place_settlement(board, hexpoint, direction)
+      if @inventory[:settlements] > 0
+        board[hexpoint][:metropoles, direction] = Catan::Metropolis.new self
+      else
+        raise "You've already used all the settlements, #{@name}"
+      end
     end
 
     private
 
     def build_inventory
       {settlements: 5, cities: 4, roads: 15, ships: 15}
+    end
+
+    def place_opposing_road(board, hexpoint, direction)
+      board.neighbor_to_the(direction, hexpoint)[:roads,
+        Catan::Hex::OPPOSITE_DIRECTIONS[direction]] = Catan::Road.new self
     end
   end
 end
