@@ -18,3 +18,4 @@ require 'catan/card'
 require 'catan/deck'
 
 require 'catan/road'
+require 'catan/metropolis'
