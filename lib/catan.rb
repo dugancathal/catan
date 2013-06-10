@@ -14,6 +14,7 @@ require 'catan/hex_grid'
 
 require 'catan/user'
 
+require 'catan/direction'
 require 'catan/card'
 require 'catan/deck'
 
