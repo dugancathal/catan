@@ -34,7 +34,7 @@ module Catan
 
     def place_opposing_road(board, hexpoint, direction)
       board.neighbor_to_the(direction, hexpoint)[:roads,
-        Catan::Hex::OPPOSITE_DIRECTIONS[direction]] = Catan::Road.new self
+        Catan::Direction[direction].opposite] = Catan::Road.new self
     end
   end
 end

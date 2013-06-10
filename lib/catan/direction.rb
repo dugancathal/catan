@@ -21,6 +21,10 @@ module Catan
     end
 
     def to_s
+      @direction.to_s
+    end
+
+    def to_sym
       @direction
     end
     

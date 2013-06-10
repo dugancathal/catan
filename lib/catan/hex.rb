@@ -3,17 +3,6 @@ module Catan
     attr_reader :roads
     attr_reader :metropoles
     ROAD_NAMES = %w(north northeast southeast south southwest northwest)
-    OPPOSITE_DIRECTIONS = {
-      north: :south,
-      south: :north,
-      northwest: :southeast,
-      northeast: :southwest,
-      southwest: :northeast,
-      southeast: :northwest,
-      east: :west,
-      west: :east,
-    }
-
     DIRECTIONS_TO_ROADS = {
       :north => 0,
       :northeast => 1,
@@ -40,12 +29,12 @@ module Catan
 
     def [](type, direction)
       directions = self.class.const_get("DIRECTIONS_TO_#{type.upcase}")
-      self.send(type)[directions[direction]]
+      self.send(type)[directions[direction.to_sym]]
     end
 
     def []=(type, direction, value)
       directions = self.class.const_get("DIRECTIONS_TO_#{type.upcase}")
-      self.send(type)[directions[direction]] = value
+      self.send(type)[directions[direction.to_sym]] = value
     end
 
     ROAD_NAMES.each do |road_name|
