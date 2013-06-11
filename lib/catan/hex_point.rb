@@ -37,5 +37,9 @@ module Catan
     def eql?(other)
       self == other
     end
+
+    def to_s
+      "#{x}, #{y}, #{z}"
+    end
   end
 end

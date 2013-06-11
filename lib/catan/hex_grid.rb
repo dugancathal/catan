@@ -24,6 +24,10 @@ module Catan
         raise Catan::OutOfGridException
       end
     end
+
+    def each(&block)
+      @grid.each(&block)
+    end
   end
 
   class OutOfGridException < RuntimeError
