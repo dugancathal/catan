@@ -36,6 +36,14 @@ module Catan
         self.eql? other
       end
 
+      def to_s
+        "(#{endpoints.first} ==== #{endpoints.last})"
+      end
+
+      def hash
+        [point.x, point.y, name].hash
+      end
+
       def endpoints
         case name
         when Direction[:west]
@@ -43,16 +51,12 @@ module Catan
         when Direction[:north]
           [Node.new(@point.travel(:northwest), Direction[:east]), Node.new(@point.travel(:northeast), Direction[:west])]
         when Direction[:east]
-          [Node.new(@point.travel(:northwest), Direction[:east]), Node.new(@point, Direction[:west])]
+          [Node.new(@point.travel(:northeast), Direction[:west]), Node.new(@point, Direction[:east])]
         end
       end
 
-      def to_s
-        "(#{endpoints.first} ==== #{endpoints.last})"
-      end
-
-      def connected_to?(other)
-        endpoints.include?(other.endpoints.first) || endpoints.include?(other.endpoints.last)
+      def connection(other)
+        (endpoints & other.endpoints).first
       end
     end
 
@@ -69,6 +73,10 @@ module Catan
 
       def ==(other)
         self.eql? other
+      end
+
+      def hash
+        [point.x, point.y, name].hash
       end
 
       def to_s

@@ -1,6 +1,3 @@
-require 'catan/graph_node'
-require 'catan/graph_edge'
-
 module Catan
   class Board
     attr_reader :graph, :grid

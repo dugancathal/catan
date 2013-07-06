@@ -23,7 +23,8 @@ describe Catan::Graph::Edge do
     edge1 = Catan::Graph::Edge.new(Catan::HexPoint.new(0, 0), Direction[:west])
     edge2 = Catan::Graph::Edge.new(Catan::HexPoint.new(0, 0), Direction[:north])
     edge3 = Catan::Graph::Edge.new(Catan::HexPoint.new(0, 0), Direction[:east])
-    edge1.connected_to?(edge2).must_equal true
-    edge1.connected_to?(edge3).must_equal false
+    edge1.connection(edge2).must_be_kind_of Catan::Graph::Node
+    edge1.connection(edge2).must_equal Catan::Graph::Node.new(Catan::HexPoint.new(-1, 1), Direction[:east])
+    edge1.connection(edge3).must_equal nil
   end
 end
